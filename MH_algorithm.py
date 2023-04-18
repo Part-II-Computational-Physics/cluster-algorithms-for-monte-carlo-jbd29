@@ -23,7 +23,7 @@ def MC_spin_flip(lattice, beta, J, MuH):
         lattice[i][j] = -1*lattice[i][j] #accepted
     # rejected if does not satisfy either of above.
 
-    def evolve_and_show(lattice, beta, J, MuH, plot_times):
+def evolve_and_show(lattice, beta, J, MuH, plot_times):
     # set up subplots for the lattice
     fig, ax = plt.subplots(1, len(plot_times), figsize = (12,4))
     sweeps = [t/np.size(lattice) for t in plot_times]

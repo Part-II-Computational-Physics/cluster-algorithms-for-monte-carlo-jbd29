@@ -32,5 +32,5 @@ def compute_autocorrelation(observable):
     for i in range(len(autocorr)):
         if math.isnan(autocorr[i]) == True:
             autocorr[i] = 0
-            
+                     
     return autocorr

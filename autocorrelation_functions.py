@@ -30,8 +30,8 @@ def compute_autocorrelation(observable):
     # use statsmodels.api to calculate autocorrelation as it is more optimised:
     autocorr = sm.tsa.acf(observable, nlags = (len(observable) - 1))
     print(autocorr[3])
-    #for i in autocorr:
-        #print(i)
-        #if math.isnan(i) == True:
-            #autocorr[autocorr.index(i)] = 0
+    for i in autocorr:
+        print(i)
+        if math.isnan(i) == True:
+            autocorr[autocorr.index(i)] = 0
     return autocorr

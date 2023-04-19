@@ -51,7 +51,7 @@ def compute_E(lattice, J):
         for i in range(j):
             E += -J*lattice[i][j]*neighbouring_spins_sum(i,j, lattice, width)
     
-    return  E/4*np.size(lattice)
+    return  E/2
 
 
 

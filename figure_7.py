@@ -3,7 +3,11 @@ import init_lattice as lat
 import MH_algorithm as MH
 import Wolff_algorithm as W
 import autocorrelation_functions as acf
-
+import importlib
+importlib.reload(MH)
+importlib.reload(W)
+importlib.reload(lat)
+importlib.reload(acf)
 # Produces data of autocorrelation against sweeps and the autocorrelation time for use in the report in figure 7
 
 lattice = lat.make_lattice(25,1)

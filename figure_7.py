@@ -27,12 +27,12 @@ lattice = lat.make_lattice(25,1)
 
 # Evolve the lattice with MH
 # Start by burning iterations to equilibrium
-burn, burn1 = MH.evolve_and_compute_M(lattice, T**-1, 1, 0, 50000)
-Ms, sweeps_MH = MH.evolve_and_compute_M(lattice,T**-1, 1, 0, 50000)
+burn, burn1 = MH.evolve_and_compute_M(lattice, T**-1, 1, 0, 100000)
+Ms, sweeps_MH = MH.evolve_and_compute_M(lattice,T**-1, 1, 0, 100000)
 
 # Now find autocorrelation
 MH_autocorr = acf.compute_autocorrelation(Ms)
-MH_sweeps_tau_f = acf.estimate_correlation_time(MH_autocorr)
+MH_sweeps_tau_f = sweeps_MH[acf.estimate_correlation_time(MH_autocorr)]
 
 # Save data
 np.save('MH_autocorr_evolution_sweeps.npy', sweeps_MH)

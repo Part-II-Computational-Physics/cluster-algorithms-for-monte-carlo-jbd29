@@ -31,7 +31,7 @@ def neighbouring_spins_sum(i, j, lattice, width):
     spin = 0
     neighbours = near_neighbours(i,j,width)
     for neighbour in neighbours:
-        spin += lattice[neighbour[0],neighbour[1]]
+        spin += lattice[neighbour[0]][neighbour[1]]
     return spin
 
 def compute_magnetisation(lattice):

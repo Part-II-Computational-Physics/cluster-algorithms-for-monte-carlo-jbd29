@@ -49,6 +49,7 @@ for width in lattice_widths:
         Ms, sweeps = MH.evolve_and_compute_M(lattice,T_c_MH**-1,1,0,10000)
         MH_autocorr = acf.compute_autocorrelation(Ms)
         MH_temp.append(acf.estimate_correlation_time(MH_autocorr))
+        print(i)
 
     MH_autocorr_time_against_width.append(np.mean(MH_temp))
     MH_autocorr_time_against_width_err.append(np.std(MH_temp))

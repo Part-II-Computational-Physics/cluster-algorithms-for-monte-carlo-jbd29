@@ -40,6 +40,18 @@ def compute_magnetisation(lattice):
     return M
 
 def compute_Chi(lattice, beta, M_Sample):
-    # takes in a last of magnetisations from some sampling scheme
+    # takes in a list of magnetisations from some sampling scheme
     # and returns susceptibility 
     return beta*np.size(lattice)*np.var(M_Sample)
+
+def compute_E(lattice, J):
+    width = len(lattice)
+    E = 0
+    for j in lattice:
+        for i in j:
+            E += -J*lattice[i][j]*neighbouring_spins_sum(i,j, lattice, width)
+    
+    return  E/np.size(lattice)
+
+
+

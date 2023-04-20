@@ -36,7 +36,7 @@ def neighbouring_spins_sum(i, j, lattice, width):
 
 def compute_magnetisation(lattice):
     # finds overall magnetisation per spin of the lattice 
-    M = np.sum(lattice)/np.size(lattice)
+    M = np.abs(np.sum(lattice)/np.size(lattice))
     return M
 
 def compute_Chi(lattice, beta, M_Sample):

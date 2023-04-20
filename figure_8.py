@@ -76,7 +76,7 @@ for T in Ts:
 #np.save('Wolff_autocorrelation_against_T.npy', autocorr_times)
 #np.save('Wolff_autocorrelation_against_T_err', autocorr_times_err)
 
-Ts = np.linspace(0.1,5,30)
+
 # plot the data:
 plt.plot(Ts,autocorr_times_MH, label = r'$\tau_f$ estimates for Metropolis-Hastings')
 # mark T_c:

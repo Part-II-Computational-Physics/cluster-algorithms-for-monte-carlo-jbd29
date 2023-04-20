@@ -89,3 +89,4 @@ np.save('MH_autocorr_time_against_width.npy', MH_autocorr_time_against_width)
 np.save('Wolff_autocorr_time_against_width.npy', Wolff_autocorr_time_against_width)
 np.save('MH_autocorr_time_against_width_err.npy', MH_autocorr_time_against_width_err)
 np.save('Wolff_autocorr_time_against_width_err.npy', Wolff_autocorr_time_against_width_err)
+

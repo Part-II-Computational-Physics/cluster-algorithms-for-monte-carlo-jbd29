@@ -17,6 +17,7 @@ Ts = np.linspace(0.2,3.5,15)
 max_time = 50000
 autocorr_times_MH = []
 autocorr_times_err_MH = []
+T_c = 2*J/np.log(1 + np.sqrt(2))
 
 for T in Ts:
 

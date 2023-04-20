@@ -4,6 +4,7 @@ import MH_algorithm as MH
 import Wolff_algorithm as W
 import autocorrelation_functions as acf
 import importlib
+import matplotlib.pyplot as plt
 importlib.reload(MH)
 importlib.reload(W)
 importlib.reload(lat)
@@ -14,8 +15,8 @@ importlib.reload(acf)
 # Initialise required variables for MH tau against T:
 Ts = np.linspace(0.1,3.5,15)
 max_time = 50000
-autocorr_times = []
-autocorr_times_err = []
+autocorr_times_MH = []
+autocorr_times_err_MH = []
 
 for T in Ts:
 
@@ -34,8 +35,8 @@ for T in Ts:
         autocorr_times_i.append(sweeps_tau_f)
 
     # Take sample mean and error
-    autocorr_times.append(np.mean(autocorr_times_i))
-    autocorr_times_err.append(np.std(autocorr_times_i))
+    autocorr_times_MH.append(np.mean(autocorr_times_i))
+    autocorr_times_err_MH.append(np.std(autocorr_times_i))
     print(T)
 
 # Save data for use in report
@@ -45,8 +46,8 @@ for T in Ts:
 # Reset required variables for Wolff tau against T, smaller max time needed due to smaller autocorrelation time for Wolff:
 Ts = np.linspace(0.1,3.5,15)
 max_time = 1000
-autocorr_times = []
-autocorr_times_err = []
+autocorr_times_Wolff = []
+autocorr_times_err_Wolff = []
 
 for T in Ts:
 
@@ -65,10 +66,25 @@ for T in Ts:
         autocorr_times_i.append(sweeps_tau_f)
     
     # Take sample mean and error
-    autocorr_times.append(np.mean(autocorr_times_i))
-    autocorr_times_err.append(np.std(autocorr_times_i))
+    autocorr_times_Wolff.append(np.mean(autocorr_times_i))
+    autocorr_times_err_Wolff.append(np.std(autocorr_times_i))
     print(T)
 
 # Save data for use in report
 #np.save('Wolff_autocorrelation_against_T.npy', autocorr_times)
 #np.save('Wolff_autocorrelation_against_T_err', autocorr_times_err)
+
+Ts = np.linspace(0.1,5,30)
+# plot the data:
+plt.plot(Ts,autocorr_times_MH, label = r'$\tau_f$ estimates for Metropolis-Hastings')
+# mark T_c:
+plt.plot(np.full((10,1),T_c),np.linspace(0,np.max(autocorr_times_MH)+1,10), color = 'gray', linestyle = '--', label = r'$T_c$')
+plt.xticks([0,1,2,3,4,5])
+plt.title(r'$\tau_f$ for magnetisation against temperature on a lattice of width 50, J = 1')
+
+plt.plot(Ts,autocorr_times_Wolff, label = r'$\tau_f$ estimates for Wolff')
+plt.xticks([0,1,2,3,4,5])
+plt.ylabel(r'$\tau_f$ in sweeps')
+plt.xlabel('T')
+plt.legend(loc = 'upper left', fontsize = 7)
+plt.show()

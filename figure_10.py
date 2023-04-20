@@ -66,19 +66,19 @@ for width in lattice_widths:
         lattice = lat.make_lattice(width,1)
         burn = W.Wolff_evolve_and_compute_M(lattice,T_c_Wolff**-1,1,1001)[0]
         Ms, sweeps = W.Wolff_evolve_and_compute_M(lattice,T_c_Wolff**-1,1,1001)
-        Wolff_autocov = acf.compute_autocorrelation(Ms)
+        Wolff_autocorr = acf.compute_autocorrelation(Ms)
         Wolff_temp.append(acf.estimate_correlation_time(Ms))
 
         lattice = lat.make_lattice(width,1)
         burn = W.Wolff_evolve_and_compute_M(lattice,T_c_Wolff**-1,1,1001)[0]
         Ms, sweeps = W.Wolff_evolve_and_compute_M(lattice,T_c_Wolff**-1,1,1001)
-        Wolff_autocov = acf.compute_autocorrelation(Ms)
+        Wolff_autocorr = acf.compute_autocorrelation(Ms)
         Wolff_temp.append(acf.estimate_correlation_time(Ms))
 
         lattice = lat.make_lattice(width,1)
         burn = W.Wolff_evolve_and_compute_M(lattice,T_c_Wolff**-1,1,1001)[0]
         Ms, sweeps = W.Wolff_evolve_and_compute_M(lattice,T_c_Wolff**-1,1,1001)
-        Wolff_autocov = acf.compute_autocorrelation(Ms)
+        Wolff_autocorr = acf.compute_autocorrelation(Ms)
         Wolff_temp.append(acf.estimate_correlation_time(Ms))  
 
     Wolff_autocorr_time_against_width.append(np.mean(Wolff_temp))

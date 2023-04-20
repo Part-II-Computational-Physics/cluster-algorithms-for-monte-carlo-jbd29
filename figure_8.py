@@ -22,7 +22,7 @@ for T in Ts:
 
     for i in range(5):
         # Lattice must be reset in each iteration, and evolved to (beyond) equilibrium
-        lattice = lat.make_lattice(60,1)
+        lattice = lat.make_lattice(30,1)
         burn = MH.evolve_and_compute_M(lattice, T**-1, 1, 0, max_time)[0]
 
         # evolve the lattice from equilibrium
@@ -54,7 +54,7 @@ for T in Ts:
 
     for i in range(5):
         # Lattice must be reset after each iteration and evolved to (beyond) equilibrium
-        lattice = lat.make_lattice(60,1)
+        lattice = lat.make_lattice(30,1)
         burn = W.Wolff_evolve_and_compute_M(lattice, T**-1, 1, max_time)
 
         # evolve the lattice from equilibrium
@@ -65,7 +65,7 @@ for T in Ts:
         autocorr = acf.compute_autocorrelation(Ms)
         sweeps_tau_f = sweeps[acf.estimate_correlation_time(autocorr)]
         autocorr_times_i.append(sweeps_tau_f)
-        print(i)
+        print('Wolff ' + str(i))
     
     # Take sample mean and error
     autocorr_times_Wolff.append(np.mean(autocorr_times_i))

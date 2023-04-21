@@ -57,7 +57,12 @@ def batch_average(observable):
     # Takes a thermalised variable and batches the data
     tau_f = acf.estimate_correlation_time(acf.compute_autocorrelation(observable))
     print('tau_f = ' + str(tau_f))
-    n_batches = int(np.floor(len(observable)/(2*tau_f)))
+
+    if tau_f == 0:
+        n_batches = np.floor(len(observable/2))
+    else:
+        n_batches = int(np.floor(len(observable)/(2*tau_f)))
+        
     print('Data divided into ' + str(n_batches) + ' batches.')
     batch_length = 2*tau_f
     average = []

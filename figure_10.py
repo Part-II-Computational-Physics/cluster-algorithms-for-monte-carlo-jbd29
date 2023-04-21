@@ -43,7 +43,7 @@ for T in Ts_MH:
     burn = MH.evolve_and_compute_E(lattice_MH,T**-1, J, 0, 100000)[0]
     print('Burn Finished')
     # Evolve from equilibrium
-    Es = MH.evolve_and_compute_E(lattice_MH,T**-1,J,0,10000)[0]
+    Es = MH.evolve_and_compute_E(lattice_MH,T**-1,J,0,100000)[0]
     # Calculate batch average and error 
     Es_MH_T, Es_MH_err_T = lat.batch_average(Es)
     print(str(Es_MH_T) + ' +- ' + str(Es_MH_err_T))
@@ -58,7 +58,7 @@ for T in Ts_Wolff:
     burn = W.Wolff_evolve_and_compute_E(lattice_Wolff,T**-1, 1, 500)[0]
     print('Burn Finished')
     # Evolve from equilibrium
-    Es = W.Wolff_evolve_and_compute_E(lattice_Wolff, T**-1, 1, 750)[0]
+    Es = W.Wolff_evolve_and_compute_E(lattice_Wolff, T**-1, 1, 2000)[0]
     # Calculate batch arverage and error
     Es_Wolff_T, Es_Wolff_err_T = lat.batch_average(Es)
     print(str(Es_Wolff_T) + ' +- ' + str(Es_Wolff_err_T))

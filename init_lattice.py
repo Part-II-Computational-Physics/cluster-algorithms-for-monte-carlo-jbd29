@@ -50,7 +50,7 @@ def compute_E(lattice, J):
     E = 0
     for j in range(len(lattice)):
         for i in range(j):
-            E += -J*lattice[i][j]*neighbouring_spins_sum(i,j, lattice, width)
+            E += -0.5*J*lattice[i][j]*neighbouring_spins_sum(i,j, lattice, width)
     return  E
 
 def batch_average(observable):

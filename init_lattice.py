@@ -52,5 +52,28 @@ def compute_E(lattice, J):
             E += -J*lattice[i][j]*neighbouring_spins_sum(i,j, lattice, width)
     return  E
 
+def batch_average(observable):
+    # Takes a thermalised variable and batches the data
+    tau_f = acf.estimate_correlation_time(acf.compute_autocorrelation(observable))
+    print('tau_f = ' + str(tau_f))
+    n_batches = int(np.floor(len(observable)/(2*tau_f)))
+    print('Data divided into ' + str(n_batches) + ' batches.')
+    batch_length = 2*tau_f
+    average = []
+    average_square = []
+
+    for i in range(n_batches):
+        if i == n_batches - 1:
+            batch = observable[i*batch_length:]
+        else:
+            batch = observable[i*batch_length:(i+1)*batch_length] 
+        
+        average.append(np.mean(batch))
+        average_square.append(np.mean(np.power(batch,2)))
+
+    average = np.mean(average)
+    average_square = np.mean(average_square)
+    err = np.sqrt(((n_batches - 1)**-1)*(average_square - average**2))
+    return average, err
 
 

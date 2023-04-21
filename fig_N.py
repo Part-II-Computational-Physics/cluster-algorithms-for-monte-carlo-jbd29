@@ -76,3 +76,9 @@ plt.ylabel(r'$\vert$M$\vert$')
 plt.title('Analytic solutions for mean magnetisation per spin, J = ' + str(J), fontsize = 10)
 plt.legend()
 plt.show()
+
+# Save data for use in report
+np.save('Ms_Wolff_against_T_2x2.npy', Ms_Wolff)
+np.save('Ms_Wolff_against_T_2x2_err.npy', Ms_Wolff_err)
+np.save('Ms_MH_against_T_2x2.npy', Ms_MH)
+np.save('Ms_MH_against_T_2x2_err.npy', Ms_MH_err)

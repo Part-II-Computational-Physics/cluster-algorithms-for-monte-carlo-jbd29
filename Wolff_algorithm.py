@@ -40,6 +40,8 @@ def Wolff_evolve_and_show(lattice, beta, J, plot_times):
             sweeps.append(sweeps[-1]+sweeps_in_iteration)
         if t in plot_times:
             lat.show_lattice(lattice, ax[plot_times.index(t)], str(round(sweeps[t],3)) + ' sweeps')
+    
+    plt.show()
 
 # evolve the lattice with Wolff and return a magnetisation time series
 def Wolff_evolve_and_compute_M(lattice, beta, J, max_time):

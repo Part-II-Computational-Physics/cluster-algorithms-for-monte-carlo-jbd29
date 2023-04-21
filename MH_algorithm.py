@@ -54,6 +54,6 @@ def evolve_and_compute_E(lattice, beta, J, MuH, max_time):
     for t in range(max_time):
         if t>0:
             MC_spin_flip(lattice, beta, J, MuH)
-        Es.append(lat.compute_E(lattice))
+        Es.append(lat.compute_E(lattice,J))
         sweeps.append(t/np.size(lattice))
     return Es, sweeps

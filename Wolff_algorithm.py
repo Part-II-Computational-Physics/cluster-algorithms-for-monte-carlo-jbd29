@@ -61,5 +61,5 @@ def Wolff_evolve_and_compute_E(lattice, beta, J, max_time):
             cluster_size = Wolff_spin_flip(lattice, beta, J)
             sweeps_in_iteration = cluster_size/np.size(lattice)
             sweeps.append(sweeps[-1]+sweeps_in_iteration)
-        Es.append(np.abs(lat.compute_E(lattice)))
+        Es.append(np.abs(lat.compute_E(lattice,J)))
     return Es, sweeps

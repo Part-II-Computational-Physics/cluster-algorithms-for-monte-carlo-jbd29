@@ -28,8 +28,8 @@ lattice_MH = lat.make_lattice(2,1)
 lattice_Wolff = lat.make_lattice(2,1)
 
 # Set temperatures to be evolved at:
-Ts_MH = np.linspace(1,5,30)
-Ts_Wolff = np.linspace(1,5,30)
+Ts_MH = np.linspace(0.5,5,30)
+Ts_Wolff = np.linspace(0.5,5,30)
 
 # Initialise observable expectation and error arraya:
 Ms_MH = []
@@ -58,7 +58,7 @@ for T in Ts_Wolff:
     burn = W.Wolff_evolve_and_compute_M(lattice_Wolff,T**-1, 1, 500)[0]
     print('Burn Finished')
     # Evolve from equilibrium
-    Ms = W.Wolff_evolve_and_compute_M(lattice_Wolff, T**-1, 1, 500)[0]
+    Ms = W.Wolff_evolve_and_compute_M(lattice_Wolff, T**-1, 1, 750)[0]
     # Calculate batch arverage and error
     Ms_Wolff_T, Ms_Wolff_err_T = lat.batch_average(Ms)
     print(str(Ms_Wolff_T) + ' +- ' + str(Ms_Wolff_err_T))

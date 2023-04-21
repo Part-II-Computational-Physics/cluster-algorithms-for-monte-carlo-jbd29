@@ -69,8 +69,8 @@ for T in Ts_Wolff:
 #   Create and display plots:
 plt.plot(Ts_2x2, Es_2x2, label = 'Analytic L = 2')
 plt.plot(np.full((5,1),T_c), np.linspace(0,1,5), linestyle = '--', color = 'gray', label = r'$T_c$')
-plt.errorbar(Ts_MH, np.abs(Es_MH), yerr = Es_MH_err, label = 'Metropolis', capsize= 2)
-plt.errorbar(Ts_Wolff, np.abs(Es_Wolff), yerr = Es_Wolff_err, label = 'Wolff', capsize= 2)
+plt.errorbar(Ts_MH, Es_MH, yerr = Es_MH_err, label = 'Metropolis', capsize= 2)
+plt.errorbar(Ts_Wolff, Es_Wolff, yerr = Es_Wolff_err, label = 'Wolff', capsize= 2)
 plt.xlabel('T')
 plt.ylabel(r'$\vert$M$\vert$')
 plt.title('Analytic solutions for mean magnetisation per spin, J = ' + str(J), fontsize = 10)

@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib as plt
+import autocorrelation_functions as acf
 
 # Produce function that produces a lattice when given desired width and initial state:
 def make_lattice(width, type):

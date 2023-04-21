@@ -52,3 +52,14 @@ def Wolff_evolve_and_compute_M(lattice, beta, J, max_time):
             sweeps.append(sweeps[-1]+sweeps_in_iteration)
         Ms.append(np.abs(lat.compute_magnetisation(lattice)))
     return Ms, sweeps
+
+def Wolff_evolve_and_compute_E(lattice, beta, J, max_time):
+    Es = []
+    sweeps = [0]
+    for t in range(max_time):
+        if t>0:
+            cluster_size = Wolff_spin_flip(lattice, beta, J)
+            sweeps_in_iteration = cluster_size/np.size(lattice)
+            sweeps.append(sweeps[-1]+sweeps_in_iteration)
+        Es.append(np.abs(lat.compute_E(lattice)))
+    return Es, sweeps

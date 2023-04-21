@@ -46,3 +46,14 @@ def evolve_and_compute_M(lattice, beta, J, MuH, max_time):
         Ms.append(lat.compute_magnetisation(lattice))
         sweeps.append(t/np.size(lattice))
     return Ms, sweeps
+
+def evolve_and_compute_E(lattice, beta, J, MuH, max_time):
+    # finds a time evolution of magnetisations to plot
+    Es = []
+    sweeps = []
+    for t in range(max_time):
+        if t>0:
+            MC_spin_flip(lattice, beta, J, MuH)
+        Es.append(lat.compute_E(lattice))
+        sweeps.append(t/np.size(lattice))
+    return Es, sweeps

@@ -59,7 +59,7 @@ def batch_average(observable):
     print('tau_f = ' + str(tau_f))
 
     if tau_f == 0:
-        n_batches = np.floor(len(observable)/2)
+        n_batches = int(np.floor(len(observable)/2))
     else:
         n_batches = int(np.floor(len(observable)/(2*tau_f)))
 
@@ -79,7 +79,7 @@ def batch_average(observable):
 
     average = np.mean(average)
     average_square = np.mean(average_square)
-    err = np.sqrt(((n_batches - 1)**-1)*(average_square - average**2))
+    err = np.sqrt(np.abs(((n_batches - 1)**-1)*(average_square - average**2)))
     return average, err
 
 

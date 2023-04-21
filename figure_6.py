@@ -10,7 +10,7 @@ importlib.reload(W)
 importlib.reload(lat)
 importlib.reload(acf)
 
-#Produces the data for figure 
+#Produces the data for figure 6
 
 # initialise lattice
 lattice = lat.make_lattice(25,0)

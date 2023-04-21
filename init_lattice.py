@@ -60,11 +60,13 @@ def batch_average(observable):
 
     if tau_f == 0:
         n_batches = int(np.floor(len(observable)/2))
+        batch_length = 2
     else:
         n_batches = int(np.floor(len(observable)/(2*tau_f)))
+        batch_length = 2*tau_f
 
     print('Data divided into ' + str(n_batches) + ' batches.')
-    batch_length = 2*tau_f
+    
     average = []
     average_square = []
 

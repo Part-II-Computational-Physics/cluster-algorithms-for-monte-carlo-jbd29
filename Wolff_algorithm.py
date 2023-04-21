@@ -1,6 +1,6 @@
 import init_lattice as lat
 import numpy as np
-import matplotlib as plt
+import matplotlib.pyplot as plt
 
 ## Implementation of the Wolff algorithm for the ising model for use in the report.
 

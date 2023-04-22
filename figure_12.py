@@ -42,7 +42,7 @@ for i in range(5):
 
 # Take Averages
 MH_autocorr = np.mean(MH_autocorr_temp, axis = 0)
-MH_sweeps_tau_f = acf.estimate_correlation_time(MH_autocorr)
+MH_sweeps_tau_f = sweeps_MH[acf.estimate_correlation_time(MH_autocorr)]
 Wolff_autocorr = np.mean(Wolff_autocorr_temp, axis = 0)
 Wolff_sweeps_tau_f =acf.estimate_correlation_time(Wolff_autocorr)
 

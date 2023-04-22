@@ -55,10 +55,10 @@ for width in lattice_widths:
 
         lattice = lat.make_lattice(width,1)
         burn = W.Wolff_evolve_and_compute_M(lattice,T_c_Wolff**-1,1,1000)[0]
-        Ms, sweeps = W.Wolff_evolve_and_compute_M(lattice,T_c_Wolff**-1,1,2000)
+        Ms, sweeps = W.Wolff_evolve_and_compute_M(lattice,T_c_Wolff**-1,1,2500)
 
-        for j in range(5):
-            Ms_sample = np.array_split(Ms, 5)[j]
+        for j in range(6):
+            Ms_sample = np.array_split(Ms, 6)[j]
             Wolff_autocorr = acf.compute_autocorrelation(Ms)
             Wolff_temp.append(acf.estimate_correlation_time(Ms))
     print(i)

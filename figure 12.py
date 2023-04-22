@@ -8,8 +8,9 @@ importlib.reload(MH)
 importlib.reload(W)
 importlib.reload(lat)
 importlib.reload(acf)
-# Produces data of autocorrelation against sweeps and the autocorrelation time for use in the report in figure 7
+# Produces data of autocorrelation against sweeps and the autocorrelation time for use in the report
 
+# Initialise lattice
 lattice = lat.make_lattice(25,1)
 T = 2.8
 

@@ -34,7 +34,7 @@ for T in Ts_MH:
     Chis_T = []
     Ms_samples = lat.batch_data(Ms)
     for i in Ms_samples:
-        Chis_T.append(lat.compute_Chi(i,))
+        Chis_T.append(lat.compute_Chi(i,T))
 
     # Take average and error:
     Chis_MH.append(np.mean(Chis_T))

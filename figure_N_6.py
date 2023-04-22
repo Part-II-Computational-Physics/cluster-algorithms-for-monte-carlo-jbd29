@@ -29,7 +29,7 @@ Chis_Wolff_err = []
 for T in Ts_MH:
     burn = MH.evolve_and_compute_M(lattice_MH, T**-1, 1, 0, 100000)[0]
     Ms = MH.evolve_and_compute_M(lattice_MH, T**-1, 1, 0, 100000)[0]
-    
+    print('burn done')
     #Find Chi for T using blocking:
     Chis_T = []
     Ms_samples = lat.batch_data(Ms)
@@ -39,6 +39,7 @@ for T in Ts_MH:
     # Take average and error:
     Chis_MH.append(np.mean(Chis_T))
     Chis_MH_err.append(np.std(Chis_T))
+    print(T)
 
 print('MH Done')
 np.save('MH_chi_against_T', Chis_MH)
@@ -47,6 +48,7 @@ np.save('MH_chi_against_T_err', Chis_MH_err)
 for T in Ts_Wolff:
     burn = MH.evolve_and_compute_M(lattice_MH, T**-1, 1, 0, 1000)[0]
     Ms = MH.evolve_and_compute_M(lattice_MH, T**-1, 1, 0, 1000)[0]
+    print('Wolff burn done')
     
     #Find Chi for T using blocking:
     Chis_T = []
@@ -57,7 +59,8 @@ for T in Ts_Wolff:
     # Take average and error:
     Chis_Wolff.append(np.mean(Chis_T))
     Chis_Wolff_err.append(np.std(Chis_T))
-
+    print(T)
+    
 print('Wolff Done')
 np.save('Wolff_chi_against_T', Chis_Wolff)
 np.save('Wolff_chi_against_T_err', Chis_Wolff_err)

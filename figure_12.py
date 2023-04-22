@@ -38,14 +38,13 @@ for i in range(5):
     Ms, sweeps_MH = MH.evolve_and_compute_M(lattice,T**-1, 1, 0, 100000)
     # Now find autocorrelation
     MH_autocorr_temp.append(acf.compute_autocorrelation(Ms))
-    MH_sweeps_tau_f_temp.append(sweeps_MH[acf.estimate_correlation_time(acf.compute_autocorrelation(Ms))])
     print(i)
 
 # Take Averages
 MH_autocorr = np.mean(MH_autocorr_temp, axis = 0)
-MH_sweeps_tau_f = np.mean(MH_sweeps_tau_f_temp)
+MH_sweeps_tau_f = acf.estimate_correlation_time(MH_autocorr)
 Wolff_autocorr = np.mean(Wolff_autocorr_temp, axis = 0)
-Wolff_sweeps_tau_f = np.mean(Wolff_sweeps_tau_f_temp)
+Wolff_sweeps_tau_f =acf.estimate_correlation_time(Wolff_autocorr)
 
 # Save data
 np.save('MH_autocorr_evolution_sweeps.npy', sweeps_MH)

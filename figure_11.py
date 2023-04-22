@@ -10,7 +10,7 @@ importlib.reload(W)
 importlib.reload(lat)
 importlib.reload(acf)
 
-
+# Produces plot of spontaneous magnetisation against temperature to compare to the onsager soln
 
 lattice_MH = lat.make_lattice(100,1)
 lattice_Wolff = lat.make_lattice(100,1)

@@ -28,7 +28,7 @@ def estimate_correlation_time(autocov):
 
 def compute_autocorrelation(observable):
     # use statsmodels.api to calculate autocorrelation as it is more optimised:
-    autocorr = sm.tsa.acf(observable, nlags = (len(observable) - 1))
+    autocorr = sm.tsa.acf(observable, nlags = (len(observable) - 1), fft = False)
     for i in range(len(autocorr)):
         if math.isnan(autocorr[i]) == True:
             autocorr[i] = 0

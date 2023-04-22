@@ -1,8 +1,6 @@
 import numpy as np
 import importlib
-rng = np.random.default_rng()  
 import matplotlib.pylab as plt
-import time
 import MH_algorithm as MH
 import Wolff_algorithm as W
 import init_lattice as lat

@@ -43,9 +43,9 @@ for i in range(5):
 
 # Take Averages
 MH_autocorr = np.mean(MH_autocorr_temp, axis = 0)
-MH_sweeps_tau_f = np.mean(MH_sweeps_tau_f_temp)
+MH_sweeps_tau_f = sweeps_MH[acf.estimate_correlation_time(Es)]
 Wolff_autocorr = np.mean(Wolff_autocorr_temp, axis = 0)
-Wolff_sweeps_tau_f = np.mean(Wolff_sweeps_tau_f_temp)
+Wolff_sweeps_tau_f = acf.estimate_correlation_time(Es)
 
 # Save data
 np.save('MH_autocorr_evolution_sweeps_E.npy', sweeps_MH)

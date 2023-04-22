@@ -36,8 +36,6 @@ for T in Ts:
     autocorr_times_MH.append(sweeps[acf.estimate_correlation_time(np.mean(autocorr_i, axis = 0))])
     print(T)
 
-T_c_MH = Ts[np.where(autocorr_times_MH == np.max(autocorr_times_MH))[0][0]]
-
 # Save data for use in report
 np.save('MH_autocorrelation_against_T', autocorr_times_MH)
 np.save('T_c_MH.npy', T_c_MH)
@@ -65,12 +63,6 @@ for T in Ts:
     autocorr_times_Wolff.append(sweeps[acf.estimate_correlation_time(np.mean(autocorr_i, axis = 0))])
     print(T)
 
-T_c_Wolff = Ts[np.where(autocorr_times_Wolff == np.max(autocorr_times_Wolff))[0][0]]
-
 # Save data for use in report
 np.save('Wolff_autocorrelation_against_T.npy', autocorr_times_Wolff)
 np.save('T_c_Wolff.npy', T_c_Wolff)
-
-
-
-

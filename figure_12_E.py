@@ -21,6 +21,7 @@ Wolff_sweeps_tau_f_temp = []
 
 #Repeat and average
 for i in range(5):
+    print(i)
     # Reset lattice
     lattice = lat.make_lattice(25,1)
     # Start by burning iterations to equilibrium
@@ -35,10 +36,9 @@ for i in range(5):
     # Start by burning iterations to equilibrium
     burn = MH.evolve_and_compute_E(lattice, T**-1, 1, 0, 100000)[0]
     # Evolve the lattice with MH
-    Ms, sweeps_MH = MH.evolve_and_compute_E(lattice,T**-1, 1, 0, 100000)
+    Es, sweeps_MH = MH.evolve_and_compute_E(lattice,T**-1, 1, 0, 100000)
     # Now find autocorrelation
     MH_autocorr_temp.append(acf.compute_autocorrelation(Es))
-    print(i)
 
 # Take Averages
 MH_autocorr = np.mean(MH_autocorr_temp, axis = 0)

@@ -22,6 +22,7 @@ Wolff_sweeps_tau_f_temp = []
 #Repeat and average
 for i in range(5):
     # Reset lattice
+    lattice = lat.make_lattice(25,1)
     # Start by burning iterations to equilibrium
     burn = W.Wolff_evolve_and_compute_E(lattice, T**-1, 1, 1000)[0]
     # Evolve with Wolff

@@ -30,7 +30,7 @@ Ms_Wolff_err = []
 # Evolve and loop through Ts:
 for T in Ts_MH:
     burn = MH.evolve_and_compute_M(lattice_MH,T**-1, 1, 0, 500000)[0]
-    Ms = MH.evolve_and_compute_M(lattice_MH,T**-1,1,0,10000)[0]
+    Ms = MH.evolve_and_compute_M(lattice_MH,T**-1,1,0,100000)[0]
 
     Ms_MH_T, Ms_MH_err_T = lat.batch_average(Ms)
     print(Ms_MH_T)
@@ -45,7 +45,7 @@ np.save('MH_M_against_T_err', Ms_MH_err)
 for T in Ts_Wolff:
     burn = W.Wolff_evolve_and_compute_M(lattice_Wolff,T**-1, 1, 500)[0]
     print('Burn Finished')
-    Ms = W.Wolff_evolve_and_compute_M(lattice_Wolff, T**-1, 1, 500)[0]
+    Ms = W.Wolff_evolve_and_compute_M(lattice_Wolff, T**-1, 1, 1000)[0]
 
     Ms_Wolff_T, Ms_Wolff_err_T = lat.batch_average(Ms)
     print(Ms_Wolff_T)

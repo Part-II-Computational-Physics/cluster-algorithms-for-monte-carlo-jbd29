@@ -30,6 +30,7 @@ for i in range(5):
     Es, sweeps_Wolff = W.Wolff_evolve_and_compute_E(lattice, T**-1, 1, 1000)
     # Now find autocorrelation
     Wolff_autocorr_temp.append(acf.compute_autocorrelation(Es))
+    print('Wolff done')
     # Repeat with MH
     # Reset lattice
     lattice = lat.make_lattice(25,1)
@@ -39,12 +40,13 @@ for i in range(5):
     Es, sweeps_MH = MH.evolve_and_compute_E(lattice,T**-1, 1, 0, 100000)
     # Now find autocorrelation
     MH_autocorr_temp.append(acf.compute_autocorrelation(Es))
+    print('MH done')
 
 # Take Averages
 MH_autocorr = np.mean(MH_autocorr_temp, axis = 0)
 MH_sweeps_tau_f = sweeps_MH[acf.estimate_correlation_time(Es)]
 Wolff_autocorr = np.mean(Wolff_autocorr_temp, axis = 0)
-Wolff_sweeps_tau_f = acf.estimate_correlation_time(Es)
+Wolff_sweeps_tau_f = sweeps_Wolff[acf.estimate_correlation_time(Es)]
 
 # Save data
 np.save('MH_autocorr_evolution_sweeps_E.npy', sweeps_MH)

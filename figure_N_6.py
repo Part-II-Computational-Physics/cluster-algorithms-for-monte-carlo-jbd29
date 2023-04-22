@@ -38,25 +38,26 @@ for T in Ts_MH:
 
     # Take average and error:
     Chis_MH.append(np.mean(Chis_T))
-
-
-
-
+    Chis_MH_err.append(np.std(Chis_T))
 
 print('MH Done')
-np.save('MH_M_against_T',Ms_MH)
-np.save('MH_M_against_T_err', Ms_MH_err)
+np.save('MH_chi_against_T', Chis_MH)
+np.save('MH_chi_against_T_err', Chis_MH_err)
 
 for T in Ts_Wolff:
-    burn = W.Wolff_evolve_and_compute_M(lattice_Wolff,T**-1, 1, 500)[0]
-    print('Burn Finished')
-    Ms = W.Wolff_evolve_and_compute_M(lattice_Wolff, T**-1, 1, 1000)[0]
+    burn = MH.evolve_and_compute_M(lattice_MH, T**-1, 1, 0, 1000)[0]
+    Ms = MH.evolve_and_compute_M(lattice_MH, T**-1, 1, 0, 1000)[0]
+    
+    #Find Chi for T using blocking:
+    Chis_T = []
+    Ms_samples = lat.batch_data(Ms)
+    for i in Ms_samples:
+        Chis_T.append(lat.compute_Chi(i,T))
 
-    Ms_Wolff_T, Ms_Wolff_err_T = lat.batch_average(Ms)
-    print(Ms_Wolff_T)
-    Ms_Wolff.append(Ms_Wolff_T)
-    Ms_Wolff_err.append(Ms_Wolff_err_T)
+    # Take average and error:
+    Chis_Wolff.append(np.mean(Chis_T))
+    Chis_Wolff_err.append(np.std(Chis_T))
 
 print('Wolff Done')
-np.save('Wolff_M_against_T',Ms_Wolff)
-np.save('Wolff_M_against_T_err', Ms_Wolff_err)
+np.save('Wolff_chi_against_T', Chis_Wolff)
+np.save('Wolff_chi_against_T_err', Chis_Wolff_err)

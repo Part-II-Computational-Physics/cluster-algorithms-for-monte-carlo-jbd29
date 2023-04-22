@@ -12,7 +12,7 @@ importlib.reload(acf)
 # Program for use in figure ten to determine the finite scaling law for the lattice
 
 # First initialise lattice widths
-lattice_widths = [2**(i + 1) for i in range(7)]
+lattice_widths = [2,5,10,50,100]
 
 # Load measured T_c's
 T_c_MH = np.load('T_c_MH.npy')
@@ -31,29 +31,19 @@ for width in lattice_widths:
         # Initialise lattice
         lattice = lat.make_lattice(width,1)
         # Burn to equilibrium 
-        burn = MH.evolve_and_compute_M(lattice, T_c_MH**-1, 1, 0, 10000)[0]
+        burn = MH.evolve_and_compute_M(lattice, T_c_MH**-1, 1, 0, 50000)[0]
         # Evolve and find autocorrelation time
-        Ms, sweeps = MH.evolve_and_compute_M(lattice,T_c_MH**-1,1,0,10000)
-        MH_autocorr = acf.compute_autocorrelation(Ms)
-        MH_temp.append(acf.estimate_correlation_time(MH_autocorr))
-
-        # Repeat process for other lattice types
-        lattice = lat.make_lattice(width,0)
-        burn = MH.evolve_and_compute_M(lattice, T_c_MH**-1, 1, 0, 10000)[0]
-        Ms, sweeps = MH.evolve_and_compute_M(lattice,T_c_MH**-1,1,0,10000)
-        MH_autocorr = acf.compute_autocorrelation(Ms)
-        MH_temp.append(acf.estimate_correlation_time(MH_autocorr))
-        lattice = lat.make_lattice(width,-1)
-
-        burn = MH.evolve_and_compute_M(lattice, T_c_MH**-1, 1, 0, 10000)[0]
-        Ms, sweeps = MH.evolve_and_compute_M(lattice,T_c_MH**-1,1,0,10000)
-        MH_autocorr = acf.compute_autocorrelation(Ms)
-        MH_temp.append(acf.estimate_correlation_time(MH_autocorr))
-        print(i)
+        Ms, sweeps = MH.evolve_and_compute_M(lattice,T_c_MH**-1,1,0,50000)
+        # Batch up the data to get more measurements:
+        for j in range(5):
+            Ms_sample = np.array_split(Ms, 5)[j]
+            MH_autocorr = acf.compute_autocorrelation(Ms)
+            MH_temp.append(acf.estimate_correlation_time(MH_autocorr))
+    print(i)
 
     MH_autocorr_time_against_width.append(np.mean(MH_temp))
     MH_autocorr_time_against_width_err.append(np.std(MH_temp))
-    print(MH_autocorr_time_against_width)
+    print('Width = ' + str(width) + ', autocorr = ' + str(MH_autocorr_time_against_width))
 
 # Repeat whole process above for the Wolff algorithm
 Wolff_autocorr_time_against_width = []
@@ -64,26 +54,18 @@ for width in lattice_widths:
         Wolff_temp = []
 
         lattice = lat.make_lattice(width,1)
-        burn = W.Wolff_evolve_and_compute_M(lattice,T_c_Wolff**-1,1,1001)[0]
-        Ms, sweeps = W.Wolff_evolve_and_compute_M(lattice,T_c_Wolff**-1,1,1001)
-        Wolff_autocorr = acf.compute_autocorrelation(Ms)
-        Wolff_temp.append(acf.estimate_correlation_time(Ms))
+        burn = W.Wolff_evolve_and_compute_M(lattice,T_c_Wolff**-1,1,1000)[0]
+        Ms, sweeps = W.Wolff_evolve_and_compute_M(lattice,T_c_Wolff**-1,1,2000)
 
-        lattice = lat.make_lattice(width,1)
-        burn = W.Wolff_evolve_and_compute_M(lattice,T_c_Wolff**-1,1,1001)[0]
-        Ms, sweeps = W.Wolff_evolve_and_compute_M(lattice,T_c_Wolff**-1,1,1001)
-        Wolff_autocorr = acf.compute_autocorrelation(Ms)
-        Wolff_temp.append(acf.estimate_correlation_time(Ms))
-
-        lattice = lat.make_lattice(width,1)
-        burn = W.Wolff_evolve_and_compute_M(lattice,T_c_Wolff**-1,1,1001)[0]
-        Ms, sweeps = W.Wolff_evolve_and_compute_M(lattice,T_c_Wolff**-1,1,1001)
-        Wolff_autocorr = acf.compute_autocorrelation(Ms)
-        Wolff_temp.append(acf.estimate_correlation_time(Ms))  
+        for j in range(5):
+            Ms_sample = np.array_split(Ms, 5)[j]
+            Wolff_autocorr = acf.compute_autocorrelation(Ms)
+            Wolff_temp.append(acf.estimate_correlation_time(Ms))
+    print(i)
 
     Wolff_autocorr_time_against_width.append(np.mean(Wolff_temp))
     Wolff_autocorr_time_against_width_err.append(np.std(Wolff_temp))
-    print(Wolff_autocorr_time_against_width)
+    print('Width = ' + str(width) + ', Wolff autocorr = ' + str(Wolff_autocorr_time_against_width))
 
 np.save('MH_autocorr_time_against_width.npy', MH_autocorr_time_against_width)
 np.save('Wolff_autocorr_time_against_width.npy', Wolff_autocorr_time_against_width)

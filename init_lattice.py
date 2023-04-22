@@ -40,7 +40,7 @@ def compute_magnetisation(lattice):
     M = np.abs(np.sum(lattice)/np.size(lattice))
     return M
 
-def compute_Chi(T, M_Sample):
+def compute_Chi(M_Sample, T):
     # takes in a list of magnetisations from some sampling scheme
     # and returns susceptibility 
     return (T**-1)*np.var(M_Sample)

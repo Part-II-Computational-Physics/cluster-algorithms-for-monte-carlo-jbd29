@@ -11,7 +11,7 @@ for T in Ts:
     lattice = lat.make_lattice(25, 1)
     for i in range(1000):
         temp = []
-        temp.append(W.Wolff_spin_flip(lattice, T**-1, T))
+        temp.append(W.Wolff_spin_flip(lattice, T**-1, 1))
     cluster_size_against_T.append(np.mean(temp))
     cluster_size_against_T_err.append(np.std(temp))
     print(T)

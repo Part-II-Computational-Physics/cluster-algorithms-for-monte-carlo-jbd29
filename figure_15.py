@@ -14,7 +14,6 @@ importlib.reload(acf)
 
 # Initialise required variables for MH tau against T:
 Ts = np.linspace(0.2,3.5,15)
-max_time = 50000
 autocorr_times_MH = []
 autocorr_times_err_MH = []
 T_c = 2/np.log(1 + np.sqrt(2))
@@ -25,9 +24,9 @@ for T in Ts:
     for i in range(5):
         # Lattice must be reset in each iteration, and evolved to (beyond) equilibrium
         lattice = lat.make_lattice(30,1)
-        burn = MH.evolve_and_compute_E(lattice, T**-1, 1, 0, max_time)[0]
+        burn = MH.evolve_and_compute_E(lattice, T**-1, 1, 0, 10000)[0]
         # evolve the lattice from equilibrium
-        Es, sweeps = MH.evolve_and_compute_E(lattice, T**-1, 1, 0, max_time)
+        Es, sweeps = MH.evolve_and_compute_E(lattice, T**-1, 1, 0, 25000)
         # find autocorrelation time and add to list.
         autocorr_i.append(acf.compute_autocorrelation(Es))
         print(i)

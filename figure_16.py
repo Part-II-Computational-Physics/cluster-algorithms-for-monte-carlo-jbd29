@@ -16,8 +16,8 @@ importlib.reload(acf)
 lattice_widths = [2,5,10,50,100]
 
 # Load measured T_c's
-T_c_MH = np.load('T_c_MH.npy')
-T_c_Wolff = np.load('T_c_Wolff.npy')
+T_c_MH = np.mean([np.load('T_c_MH.npy'), np.load('T_c_MH_E.npy')])
+T_c_Wolff = np.mean([np.load('T_c_Wolff.npy'), np.load('T_c_Wolff_E.npy')])
 
 #Run loop for MH algorithm
 MH_autocorr_time_against_width = []
@@ -32,7 +32,7 @@ for width in lattice_widths:
         # Initialise lattice
         lattice = lat.make_lattice(width,1)
         # Burn to equilibrium 
-        burn = MH.evolve_and_compute_M(lattice, T_c_MH**-1, 1, 0, 50000)[0]
+        burn = MH.evolve_and_compute_M(lattice, T_c_MH**-1, 1, 0, 10000)[0]
         # Evolve and find autocorrelation time
         Ms = MH.evolve_and_compute_M(lattice, T_c_MH**-1, 1, 0, 50000)[0]
 

@@ -21,7 +21,7 @@ T_c = 2/np.log(1 + np.sqrt(2))
 for T in Ts:
     autocorr_i = []
 
-    for i in range(5):
+    for i in range(10):
         # Lattice must be reset in each iteration, and evolved to (beyond) equilibrium
         lattice = lat.make_lattice(30,1)
         burn = MH.evolve_and_compute_E(lattice, T**-1, 1, 0, 10000)[0]

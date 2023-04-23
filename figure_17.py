@@ -1,6 +1,6 @@
 import numpy as np
 import Wolff_algorithm as W
-import MH_algorithm as M
+import MH_algorithm as MH
 import time
 import init_lattice as lat
 

@@ -18,7 +18,7 @@ for T in Ts:
     MH_execute_time_i = []
 
     # Average over loops
-    for i in range(5):
+    for i in range(20):
         lattice = lat.make_lattice(100, 1)
         start = time.time()
         W.Wolff_spin_flip(lattice, T**-1, 1)

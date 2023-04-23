@@ -43,7 +43,7 @@ np.save('T_c_MH_E.npy', T_c_MH_E)
 
 # Reset required variables for Wolff tau against T, smaller max time needed due to smaller autocorrelation time for Wolff:
 Ts = np.linspace(0.2,3.5,15)
-max_time = 1000
+max_time = 750
 autocorr_times_Wolff = []
 autocorr_times_err_Wolff = []
 

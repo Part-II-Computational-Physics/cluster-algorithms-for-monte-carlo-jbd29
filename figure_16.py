@@ -63,7 +63,7 @@ for width in lattice_widths:
             Wolff_autocorr.append(acf.compute_autocorrelation(Ms_sample))
 
     print(i)
-    Wolff_autocorr_time_against_width.append(acf.compute_autocorrelation(np.mean(Wolff_autocorr, axis = 0)))
+    Wolff_autocorr_time_against_width.append(acf.estimate_correlation_time(np.mean(Wolff_autocorr, axis = 0)))
     print('Width = ' + str(width) + ', Wolff autocorr = ' + str(Wolff_autocorr_time_against_width))
 
 np.save('MH_autocorr_time_against_width.npy', MH_autocorr_time_against_width)

@@ -56,6 +56,7 @@ for width in lattice_widths:
 
         lattice = lat.make_lattice(width, 1)
         burn = W.Wolff_evolve_and_compute_M(lattice, T_c_Wolff**-1, 1, 1000)[0]
+        print('burn done')
         Ms = W.Wolff_evolve_and_compute_M(lattice, T_c_Wolff**-1, 1, 2000)[0]
 
         for j in range(5):

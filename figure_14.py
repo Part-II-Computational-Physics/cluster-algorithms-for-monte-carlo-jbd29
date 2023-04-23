@@ -10,7 +10,7 @@ importlib.reload(W)
 importlib.reload(lat)
 importlib.reload(acf)
 
-# Produces a plot of average autocorrelation time against temperature for MH and Wolff 
+# Produces a plot of average magnetisation autocorrelation time against temperature for MH and Wolff 
 
 # Initialise required variables for MH tau against T:
 Ts = np.linspace(0.2,3.5,15)

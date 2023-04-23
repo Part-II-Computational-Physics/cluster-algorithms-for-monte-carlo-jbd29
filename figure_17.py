@@ -30,11 +30,11 @@ for T in Ts:
         end = time.time()
         MH_execute_time_i.append(end - start)
     
-    # Take mean and erro
+    # Take mean and error
     MH_execute_time.append(np.mean(MH_execute_time_i))
-    MH_execute_time_err.append(np.std(MH_execute_time_i))
+    MH_execute_time_err.append(np.std(MH_execute_time_i)/np.sqrt(len(MH_execute_time_i)))
     Wolff_execute_time.append(np.mean(Wolff_execute_time_i))
-    Wolff_execute_time_err.append(np.std(Wolff_execute_time_i))       
+    Wolff_execute_time_err.append(np.std(Wolff_execute_time_i)/np.sqrt(len(Wolff_execute_time_i)))       
 
 # Save for use in report
 np.save('MH_execute_time_against_T.npy', MH_execute_time)
@@ -72,9 +72,9 @@ for width in lattice_widths:
     
     # Take mean and error
     MH_execute_time.append(np.mean(MH_execute_time_i))
-    MH_execute_time_err.append(np.std(MH_execute_time_i))
+    MH_execute_time_err.append(np.std(MH_execute_time_i)/np.sqrt(len(MH_execute_time_i)))
     Wolff_execute_time.append(np.mean(Wolff_execute_time_i))
-    Wolff_execute_time_err.append(np.std(Wolff_execute_time_i))    
+    Wolff_execute_time_err.append(np.std(Wolff_execute_time_i)/np.sqrt(len(Wolff_execute_time_i)))   
 
 # Save for use in report
 np.save('MH_execute_time_against_T.npy', MH_execute_time)

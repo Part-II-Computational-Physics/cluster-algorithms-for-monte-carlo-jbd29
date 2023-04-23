@@ -58,7 +58,7 @@ for T in Ts:
         # evolve the lattice from equilibrium
         Es, sweeps = W.Wolff_evolve_and_compute_E(lattice, T**-1, 1, max_time)
         # find autocorrelation time and add to list.
-        autocorr_i.append(acf.compute_autocorrelation(Ms))
+        autocorr_i.append(acf.compute_autocorrelation(Es))
         print('Wolff ' + str(i))
     
     # Take sample mean autocorr time

@@ -16,8 +16,8 @@ importlib.reload(acf)
 lattice_widths = [2,5,10,50,100]
 
 # Load measured T_c's
-T_c_MH = 2*J/np.log(1 + np.sqrt(2))
-T_c_Wolff = 2*J/np.log(1 + np.sqrt(2))
+T_c_MH = 2/np.log(1 + np.sqrt(2))
+T_c_Wolff = 2/np.log(1 + np.sqrt(2))
 
 #Run loop for MH algorithm
 MH_autocorr_time_against_width = []

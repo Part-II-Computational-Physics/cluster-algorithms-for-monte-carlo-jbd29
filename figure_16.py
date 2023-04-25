@@ -68,6 +68,7 @@ for width in lattice_widths:
     print('Width = ' + str(width) + ', Wolff autocorr = ' + str(Wolff_autocorr_time_against_width))
 
 np.save('MH_autocorr_time_against_width.npy', MH_autocorr_time_against_width)
+np.save('Wolff_autocorr_time_against_width.npy', Wolff_autocorr_time_against_width)
 
 # Now use statsmodels to fit the data to linear regression:
 # Firstly take logs:
@@ -81,9 +82,10 @@ model = sm.OLS(lnMH_autocorr_time_against_width, A)
 results = model.fit()
 m , c = results.params
 m_err, c_err = results.bse
+R2 = results.rsquared
 
 # Save for use in report
-np.save('MH_autocorr_time_against_width_params.npy', [m, c])
+np.save('MH_autocorr_time_against_width_params.npy', [m, c, R2])
 np.save('MH_autocorr_time_against_width_params_err.npy', [m_err, c_err])
 
 # Linear regression for Wolff
@@ -92,7 +94,8 @@ model = sm.OLS(lnWolff_autocorr_time_against_width, A)
 results = model.fit()
 m , c = results.params
 m_err, c_err = results.bse
+R2 = results.rsquared
 
 # Save for use in report 
-np.save('MH_autocorr_time_against_width_params.npy', [m, c])
-np.save('MH_autocorr_time_against_width_params_err.npy', [m_err, c_err])
+np.save('Wolff_autocorr_time_against_width_params.npy', [m, c, R2])
+np.save('Wolff_autocorr_time_against_width_params_err.npy', [m_err, c_err])

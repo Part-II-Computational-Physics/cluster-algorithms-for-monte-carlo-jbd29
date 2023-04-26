@@ -46,7 +46,7 @@ for width in lattice_widths:
     print('Width = ' + str(width) + ', autocorr = ' + str(MH_autocorr_time_against_width))
 
 # Repeat whole process above for the Wolff algorithm
-lattice_widths = [2,10,20,50,100]
+lattice_widths = [2,10,20,50,100,150]
 Wolff_autocorr_time_against_width = []
 
 for width in lattice_widths:

@@ -13,7 +13,7 @@ importlib.reload(acf)
 # Program for use in report to determine the finite scaling law for the lattice
 
 # First initialise lattice widths
-lattice_widths = [2,5,10,50,100]
+lattice_widths = [2,5,10,50,100,200,300]
 
 # Load measured T_c's
 T_c_MH = 2/np.log(1 + np.sqrt(2))
@@ -46,6 +46,7 @@ for width in lattice_widths:
     print('Width = ' + str(width) + ', autocorr = ' + str(MH_autocorr_time_against_width))
 
 # Repeat whole process above for the Wolff algorithm
+lattice_widths = [2,10,20,50,100]
 Wolff_autocorr_time_against_width = []
 
 for width in lattice_widths:

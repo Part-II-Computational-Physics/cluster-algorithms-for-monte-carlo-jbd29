@@ -84,7 +84,7 @@ np.save('Wolff_execute_time_against_width_1_err.npy', Wolff_execute_time_err)
 
 # Now, repeat for Wolff at T_c and above T_C
 
-# Above T_c, T = 5
+# Above T_c, T = 10
 #Lattice size complexity:
 
 lattice_widths = np.arange(25,500,25)
@@ -100,7 +100,7 @@ for width in lattice_widths:
     for i in range(5):
         lattice = lat.make_lattice(width, 1)
         start = time.time()
-        W.Wolff_spin_flip(lattice, 0.5, 1)
+        W.Wolff_spin_flip(lattice, 0.1, 1)
         end = time.time()
         Wolff_execute_time_i.append(end-start)
 

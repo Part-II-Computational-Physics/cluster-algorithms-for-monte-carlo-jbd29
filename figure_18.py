@@ -13,8 +13,8 @@ for T in Ts:
         temp = []
         temp.append(W.Wolff_spin_flip(lattice, T**-1, 1))
     cluster_size_against_T.append(np.mean(temp))
+    print(np.mean(temp), T)
     cluster_size_against_T_err.append(np.std(temp))
-    print(T)
 
 # Save for use in report
 np.save('cluster_size_against_T.npy', cluster_size_against_T)

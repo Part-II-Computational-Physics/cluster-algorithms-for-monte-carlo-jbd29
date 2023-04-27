@@ -13,7 +13,7 @@ MH_execute_time_err = []
 Wolff_execute_time_err = []
 
 for T in Ts:
-    # Set up temmporary data storage
+    # Set up temporary data storage
     Wolff_execute_time_i = []
     MH_execute_time_i = []
 
@@ -77,7 +77,65 @@ for width in lattice_widths:
     Wolff_execute_time_err.append(np.std(Wolff_execute_time_i)/np.sqrt(len(Wolff_execute_time_i)))   
 
 # Save for use in report
-np.save('MH_execute_time_against_T.npy', MH_execute_time)
-np.save('MH_execution_time_against_T_err.npy', MH_execute_time_err)
-np.save('Wolff_execute_time_against_T.npy', Wolff_execute_time)
-np.save('Wolff_execute_time_against_T_err.npy', Wolff_execute_time_err)
+np.save('MH_execute_time_against_width.npy', MH_execute_time)
+np.save('MH_execution_time_against_width_err.npy', MH_execute_time_err)
+np.save('Wolff_execute_time_against_width_1.npy', Wolff_execute_time)
+np.save('Wolff_execute_time_against_width_1_err.npy', Wolff_execute_time_err)
+
+# Now, repeat for Wolff at T_c and above T_C
+
+# Above T_c, T = 5
+#Lattice size complexity:
+
+lattice_widths = np.arange(25,500,25)
+Wolff_execute_time = []
+Wolff_execute_time_err = []
+
+for width in lattice_widths:
+    # Set up temmporary data storage
+    Wolff_execute_time_i = []
+    MH_execute_time_i = []
+
+    # Average over loops
+    for i in range(5):
+        lattice = lat.make_lattice(width, 1)
+        start = time.time()
+        W.Wolff_spin_flip(lattice, 0.5, 1)
+        end = time.time()
+        Wolff_execute_time_i.append(end-start)
+
+    # Take mean and error
+    Wolff_execute_time.append(np.mean(Wolff_execute_time_i))
+    Wolff_execute_time_err.append(np.std(Wolff_execute_time_i)/np.sqrt(len(Wolff_execute_time_i)))   
+
+# Save for use in report
+np.save('Wolff_execute_time_against_width_5.npy', Wolff_execute_time)
+np.save('Wolff_execute_time_against_width_5_err.npy', Wolff_execute_time_err)
+
+# At T = T_c
+#Lattice size complexity:
+
+lattice_widths = np.arange(25,500,25)
+Wolff_execute_time = []
+Wolff_execute_time_err = []
+
+for width in lattice_widths:
+    # Set up temmporary data storage
+    Wolff_execute_time_i = []
+    MH_execute_time_i = []
+
+    # Average over loops
+    for i in range(5):
+        lattice = lat.make_lattice(width, 1)
+        start = time.time()
+        W.Wolff_spin_flip(lattice, 0.5, 1)
+        end = time.time()
+        Wolff_execute_time_i.append(end-start)
+
+    # Take mean and error
+    Wolff_execute_time.append(np.mean(Wolff_execute_time_i))
+    Wolff_execute_time_err.append(np.std(Wolff_execute_time_i)/np.sqrt(len(Wolff_execute_time_i)))   
+
+# Save for use in report
+np.save('Wolff_execute_time_against_width_c.npy', Wolff_execute_time)
+np.save('Wolff_execute_time_against_width_c_err.npy', Wolff_execute_time_err)

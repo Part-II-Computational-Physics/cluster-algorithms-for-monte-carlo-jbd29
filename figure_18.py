@@ -9,6 +9,8 @@ cluster_size_against_T_err = []
 
 for T in Ts:
     lattice = lat.make_lattice(25, 1)
+    # Burn to eq
+    burn = W.Wolff_spin_flip(lattice, T**-1, 250)
     for i in range(1000):
         temp = []
         temp.append(W.Wolff_spin_flip(lattice, T**-1, 1))

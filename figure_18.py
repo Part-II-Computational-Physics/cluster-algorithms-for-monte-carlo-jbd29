@@ -100,7 +100,7 @@ for width in lattice_widths:
     for i in range(5):
         lattice = lat.make_lattice(width, 1)
         start = time.time()
-        W.Wolff_spin_flip(lattice, 0.1, 1)
+        W.Wolff_spin_flip(lattice, 0.2, 1)
         end = time.time()
         Wolff_execute_time_i.append(end-start)
 
